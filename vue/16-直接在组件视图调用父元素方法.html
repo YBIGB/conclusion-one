@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<efls v-for="item in weaponList"   :wp="item"></efls>
+			<h2>当前武器：{{now}}</h2>
+		</div>
+	</body>
+	<script type="text/javascript">
+		Vue.component('efls',{
+			props:['wp'],
+			template:
+				`<div>
+				<h3>月华：{{wp}}</h3>
+				<button @click="$parent.changeWeaponWai(wp)">切换武器</button>
+				</div>`
+		})	
+		var app =new Vue({
+			el:"#app",
+			data:{
+				weaponList:['通碧','断魄','坠明','莹焰','折镜'],
+				now:""
+			},
+				methods:{
+					changeWeaponWai:function(e){
+						this.now=e
+					}
+			}
+		})
+	</script>
+</html>

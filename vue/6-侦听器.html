@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>我是原消息{{msg}}</h1>
+			<h1>我是新消息{{reverseMsg}}</h1>
+			<ul>
+				<li v-for="item1 in stus">{{item1}}</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				msg:"hello",
+				stus:["zxc","zcc",'yyut'],
+			},
+			computed:{
+				reverseMsg:{
+					get:function(){
+					return  this.msg.split('').reverse().join('') //紧接着下下行代码  reverseMsg的值被返回 其为app.msg的二次逆序
+				} , 
+					set:function(value){
+						 console.log("woshi"+value)			//修改reversMsg后 新的值会被作为value传入jt1		
+						this.msg = value.split('').reverse().join('') //紧接着上一行代码 app.msg的值被逆序
+					}
+				}
+				
+				
+				
+				/* function(){
+					return  this.msg.split('').reverse().join('')
+				} */
+			},
+			
+			watch:{
+				msg:function(val){
+					console.log("监听事件----msg")  /*监听事件响应jt2 */
+					console.log("watch  "+val) /* jt3 此时val已经逆序*/
+				},
+				stus:function(val){
+					console.log("监听事件----stus") 
+					this.msg="芜湖起飞"
+					console.log(val)
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div  id="app">
+			<div v-show="isVip" id="">
+				Hello Vip
+			</div>
+			<button @click="change">123</button>
+			<div v-if="isVip2" id="">
+				Hello Vip2
+			</div>
+			<div v-else id="">
+				go away
+			</div>
+					
+			
+		</div>
+			
+			
+		
+	</body>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:'#app',
+			data:{
+				isVip:true,
+				isVip2:false,
+			},
+			methods:{
+				change:function(){
+					app.isVip = ! app.isVip
+				}
+			}
+		})
+	</script>
+</html>
