@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+   
+</head>
+<body>
+    <div id="app" >
+       <button @click="count++">已点击按钮{{count}}次</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+              count:0
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>
