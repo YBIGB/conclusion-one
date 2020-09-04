@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+        <style type="text/css">
+            *{
+                padding: 0;
+                margin: 0;
+            }
+			#app{
+                height: 330px;
+                width: 300px;
+                position: relative;
+                font-size: 0;
+                overflow: hidden;
+            }
+            .top{
+                height: 30px;
+                width: 100px;
+                border: 1px solid black;
+                box-sizing: border-box;
+                display: inline-block;
+                font-size:16px;
+                text-align: center;
+                line-height: 30px;
+                border-radius: 10px 10px 0 0 ;
+            }
+            .main{
+                width: 300px;
+                height: 300px;
+                border: lavender 1px solid;
+                overflow: hidden;
+            }
+            .snake{
+                position: absolute;
+                height: 5px;
+                width: 100px;
+                top: 25px;
+                background-color: crimson;
+                transition: 0.3s;
+            }
+            .box0,.box1,.box2{
+                width: 300px;
+                height: 300px;
+                position: absolute;
+                background-color: crimson;
+                transition: 1s;
+            }
+            .box1{
+                background-color: aqua;
+            }
+            .box2{
+                background-color: darkgoldenrod;
+            }
+            .v-enter{
+                left: 300px;
+            }
+            .v-enter-to{
+                left:0
+            }
+		</style>
+	</head>
+	<body>
+		<div id="app" >
+            <div class="top" @click="index=0">1</div>
+            <div class="top" @click="index=1">2</div>
+            <div class="top" @click="index=2">3</div>
+            <div class="snake" :style="{left:index*100+'px'}"></div>
+            <div class="main">
+                <transition>
+                <div class="box0" key="0" v-if="index==0"></div>
+                <div class="box1" key="1" v-else-if="index==1"></div>
+                <div class="box2" key="2" v-else></div>
+                </transition>
+            </div> 
+		</div>
+		<script type="text/javascript">
+			var app =new Vue({
+				el: "#app",
+				data: {
+					index:0
+                    
+				},
+                mounted(){
+                    setInterval(function(){
+                        app.index>1?app.index=0:app.index++
+                    },2000);
+                },
+			})
+		</script>
+	</body>
+</html>
