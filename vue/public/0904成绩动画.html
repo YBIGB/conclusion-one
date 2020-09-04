@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+        }
+        .box1,.box2,.box3{
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            text-align: center;
+            display: inline-block;
+            background-color: hotpink;
+            color: gold;
+            position: absolute;
+        }
+        .box2{
+            background-color: goldenrod;
+            color: gray;
+        }
+        .box3{
+            background-color: blueviolet;
+            color: aqua;
+        }
+        .v-enter,.v-leave-to{
+            opacity: 0;
+        }
+        .v-enter-active,.v-leave-active{
+            transition: all 1s;
+        }
+        .v-leave,.v-enter-to{
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app" @click="index>1?index=0:index++">
+        <input type="number" v-model="grade" step="10" max="100" min="0">
+        <transition>
+            <div key="0"class="box1" v-if="grade>80">优</div>
+            <div key="1"class="box2" v-else-if="grade>60">良</div>
+            <div key="2"class="box3" v-else>差</div>
+        </transition> 
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+              grade:'80'
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

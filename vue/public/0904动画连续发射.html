@@ -11,64 +11,58 @@
             margin:0;
         }
         #app{
-            height: 500px;
+            height: 1000px;
             background-color: #353d48;
         }
-        .box,.box2{
-            height: 200px;
-            width: 200px;
+        .com{
+            height: 100px;
+            width: 100px;
             background-color: red;
             position: absolute;
             top: 100px;
-            left: 50%;
+            left: 30%;
         }
         .box2{
-            top: 300px;
+            top: 200px; 
+            background-color:greenyellow
+        }
+        .box3{
+            top: 300px; 
             background-color: aqua;
-
         }
         .v-enter{
-            left: 10%;
+            left: 0%;
             opacity: 0;
         }
-        .v-enter-active{
-            transition: all 1s;
+        .v-enter-active,.v-leave-active{
+            transition: all .5s;
         }
-        .v-enter-to{
-            left: 50%;
+        .v-enter-to,.v-leave{
+            left: 30%;
             opacity: 1;
         }
-        
-        
-        .xxx-enter{
-            left: 10%;
+        .v-leave-to{
+            left: 60%;
             opacity: 0;
         }
-        .xxx-enter-active{
-            transition: all 1s;
-        }
-        .xxx-enter-to{
-            left: 50%;
-            opacity: 1;
-        }
+      
 
     </style>
 </head>
 <body>
-    <div id="app" @click="show=!show">
-        <transition appear>
-            <div class="box" v-if="show"> </div>
-        </transition>  
-        <transition name='xxx' >
-            <div class="box2" v-if="show"> </div>
-        </transition>  
+    <div id="app" @click="index>1?index=0:index++">
+        <transition>
+           <div key="1" class="box1 com" v-if="index==0"></div>
+           <div key="2" class="box2 com" v-else-if="index==1"></div>
+           <div key="3" class="box3 com" v-else="index==2"></div>
+        </transition> 
     </div>
 
     <script>
         var app = new Vue({
             el:'#app',
             data:{
-               show:true
+               index:0
             },
             methods:{
                 
