@@ -9,14 +9,25 @@
 </head>
 <body>
     <div id="app" >
-       <button @click="count++">已点击按钮{{count}}次</button>
+       <count-button></count-button>
+       <count-button></count-button>     
     </div>
 
     <script>
+
+        Vue.component('count-button',{
+            template:`<button @click="count++">已点击按钮{{count}}次</button>`,
+            data:function(){
+                return{
+                    count:0
+                }
+            }
+        })
+
         var app = new Vue({
             el:'#app',
             data:{
-              count:0
+            
             },
             methods:{
                 
