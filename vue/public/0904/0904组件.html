@@ -13,10 +13,13 @@
        <count-button></count-button>     
     </div>
 
-    <script>
+    <script type="text/x-temlate" id="btnTemplate">
+        <button @click="count++">已点击按钮{{count}}次</button>
+    </script>
 
+    <script>
         Vue.component('count-button',{
-            template:`<button @click="count++">已点击按钮{{count}}次</button>`,
+            template:"#btnTemplate",
             data:function(){
                 return{
                     count:0

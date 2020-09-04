@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+   
+</head>
+<body>
+   
+
+    <div id="app" >   
+        <count-button lang="zh"></count-button>
+        <count-button lang="en"></count-button>
+        <count-button :lang="nowLang"></count-button> 
+        <button @click="nowLang =='en'?nowLang='zh':nowLang='en'">变</button>
+    </div>
+
+    
+    <script type="text/x-temlate" id="mybtn">
+        <button v-if="lang=='zh'" @click="count++"> 点击了按钮{{count}}次 </button>
+        <button v-else-if="lang=='en'" @click="count++" >click{{count}}times </button>
+        <!-- 组件里有两个但是只能渲染出去一个 -->
+        <!-- 通过prop吧外面的lang 传给里面的if判断 -->
+    </script>
+    <script>
+        Vue.component('count-button',{
+            template:"#mybtn",
+            data:function(){
+                return{
+                    count:0,
+                }
+            },
+            props:['lang']
+        })
+
+        var app = new Vue({
+            el:'#app',
+            data:{
+                nowLang:'zh'
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

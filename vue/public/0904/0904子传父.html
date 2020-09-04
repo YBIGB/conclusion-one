@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+   
+</head>
+<body>
+   
+
+    <div id="app" >   
+        总和为：{{amount}}
+       <count-button @count-change="amount++" @ten-time="tenFn"></count-button> 
+       <count-button @count-change="amount++" @ten-time="tenFn"></count-button> 
+       <count-button @count-change="amount++" @ten-time="alert($event)"></count-button> 
+    </div>
+
+    
+    <script type="text/x-temlate" id="mybtn">
+        <button @click="onClick"> 已点击{{count}} 次</button>
+    </script>
+    <script>
+        Vue.component('count-button',{
+            template:"#mybtn",
+            data:function(){
+                return{
+                    count:0
+                }
+            },
+            methods:{
+                onClick(){
+                    this.count++
+                    this.$emit('count-change') //给父亲抛出事件c-c 告知count变化了
+                    if(this.count%10 == 0){
+                        this.$emit('ten-times',this.count) //给父亲抛出事件t-t 告知我点了十次了 并传过去一个数字
+                    }
+                }
+            }
+        })
+
+
+        var app = new Vue({
+            el:'#app',
+            data:{
+                amount:0
+            },
+            methods:{
+                tenFn(e){
+                    alert('执行了'+e)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
