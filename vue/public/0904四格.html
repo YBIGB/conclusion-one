@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .main>div{
+            background-color: lawngreen;
+            width: 150px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border: 1px black solid;
+        }
+        .v-enter,.v-leave-to{
+            transform: scale(2);
+            opacity: 0;
+        }
+        .v-enter-active,.v-leave-active{
+            transition: all 1s;
+        }
+
+    </style>
+</head>
+
+<body>
+    
+        <div id="app">
+            <transition-group tag="div" class="main"  appear>
+                <div v-for="(item,index) in list" :key="item" @click="list.splice(index,1)">{{item}}</div>
+            </transition-group>
+        </div>
+   
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                list:['html','css','js','vue']
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
