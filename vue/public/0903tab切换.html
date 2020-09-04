@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+		<style type="text/css">
+			#app {
+				position: relative;
+				font-size: 0;
+			}
+
+			.top {
+				border: #191970 1px solid;
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				border-radius: 10px 10px 0 0;
+				text-align: center;
+				line-height: 30px;
+				box-sizing: border-box;
+				font-size: 14px;
+			}
+
+			.active {
+				background-color: black;
+				color: white;
+			}
+
+			#snake {
+				position: absolute;
+				bottom: 0;
+				width: 100px;
+				height: 5px;
+				background-color: crimson;
+				transition: 0.3s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app" @click="move">
+			<div class="top active" data-index="0">表一</div>
+			<div class="top" data-index="1">表二</div>
+			<div class="top" data-index="2">表三</div>
+			<div id="snake" :style="{left:x+'px'}">
+
+			</div>
+		</div>
+		<script type="text/javascript">
+			var app =new Vue({
+				el: "#app",
+				data: {
+					x:0,
+					i:-1
+				},
+				mounted(){
+					setInterval(function(){
+						app.i++
+						$('.top ').eq(app.i).addClass('active')
+						$('.top ').eq(app.i).siblings().removeClass('active')
+						app.x = app.i*100
+						if(app.i==2)
+						app.i = -1
+					},1000)
+				},
+				methods: {
+					move(event){
+						console.log(event.target.dataset.index)
+						var ind = event.target.dataset.index
+						app.i = ind-1
+						$('.top ').eq(ind).addClass('active')
+						$('.top ').eq(ind).siblings().removeClass('active')
+						if(ind==0)
+							this.x=0
+						if(ind==1)
+							this.x=100
+						if(ind==2)
+							this.x=200
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

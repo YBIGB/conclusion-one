@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+		<style type="text/css">
+			#showdiv {
+				border: solid 1px;
+				border-radius: 10px;
+				/*设置边框角度*/
+				width: 320px;
+				height: 400px;
+				text-align: center;
+				margin: auto;
+				/*设置居中*/
+				margin-top: 50px;
+				background-color: floralwhite;
+
+
+			}
+
+			/*设置输入框样式*/
+			input {
+				margin-top: 20px;
+				width: 290px;
+				height: 40px;
+				font-size: 20px;
+
+			}
+
+			/*设置按钮样式*/
+			button {
+				width: 60px;
+				height: 60px;
+				margin-top: 20px;
+				margin-left: 5px;
+				margin-right: 5px;
+				font-size: 30px;
+				font-weight: bold;
+				font-family: "萝莉体 第二版";
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id="showdiv" @click="onClick">
+				<input type="text" readonly="readonly" v-model="num" />
+				<button>1</button>
+				<button>2</button>
+				<button>3</button>
+				<button>+</button>
+				<button>4</button>
+				<button>5</button>
+				<button>6</button>
+				<button>-</button>
+				<button>7</button>
+				<button>8</button>
+				<button>9</button>
+				<button>*</button>
+				<button>0</button>
+				<button>C</button>
+				<button>=</button>
+				<button>/</button>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			new Vue({
+				el: "#app",
+				data: {
+					num: ''
+				},
+				methods: {
+					onClick(event) {
+						console.log(event.target)
+						console.log(event.target.innerHTML)
+						var val = event.target.innerHTML
+						if (val == "C")
+							this.num = ''
+						else if (val == '=')
+							this.num = eval(this.num)
+						else if (!isNaN(val)||val=='+'||val=='-'||val=='*'||val=='/')
+							this.num += val
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

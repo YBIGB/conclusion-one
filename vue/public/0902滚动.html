@@ -1,0 +1,47 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.js"></script>
+	<title>js文字向左无缝滚动</title>
+</head>
+<body>
+	<style type="text/css">
+		#demo {
+			overflow: hidden;
+			width: 300px;
+		}
+		#demo .nav {
+			width: 800000%;
+			font-size: 0;
+		}
+
+		#demo .nav div {
+			float: left;
+		}
+	</style>
+	<div id="demo"> 　
+		　<div class="nav"> 　　　
+			<div id="demo1"> 　　　　
+				<img src="img/Aphelios.png" >
+				<img src="img/Ashe.png" >
+				<img src="img/Varus.png" >
+			</div> 　　
+			<div id="demo2"></div> 　
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("#demo2").html($("#demo1").html())
+		function Marquee() {
+			if (demo.scrollLeft - demo1.offsetWidth >= 0) {
+				demo.scrollLeft -= demo1.offsetWidth;
+			} else {
+				demo.scrollLeft++;
+			}
+		}
+		var myvar = setInterval(Marquee, 10);
+		$("#demo").hover(function(){
+			clearInterval(myvar)
+		},function(){
+			setInterval(Marquee, 10)
+		})
+	</script>
+</body>

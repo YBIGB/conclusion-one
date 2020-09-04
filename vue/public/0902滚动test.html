@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/public/">
+    		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click='start'>start</button>
+        <button @click='stop'>stop</button>
+        <p>{{content}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            //el: element 应用的根目录
+            el:'#app', //渲染的模板在哪里
+            //data属性：vue应用的数据
+            data:{
+                content: '不要浪！！',
+                index:0,
+                id:-1,
+                running: false,
+            },
+            created() {
+                //Vue初始化完成会调用created()
+                var originTxt = "不要浪！！";
+                setInterval(()=>{
+                    if(!this.running)
+                        return;
+                    this.content=originTxt.substr(this.index++)
+                    +originTxt.substr(0,this.index);
+                    if(this.index>originTxt.length){
+                        this.index=0;
+                    }
+                },200);
+            },
+            methods: {
+                start(){
+                    // this.id = 
+                    this.running = true;
+                },
+                stop(){
+                    this.running = false;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

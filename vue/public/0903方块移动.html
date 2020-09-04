@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <style>
+        .box {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" readonly :value='inputTxt' 
+            @keydown.enter='running=!running'
+            @keydown.37="onLeft" 
+            @keydown.arrow-right='onLeft'
+            @keydown.arrow-up='onLeft' 
+            @keydown.arrow-down='onLeft'>
+        <div class="box" :style="{left:x+'px',top:y+'px'}"></div>
+    </div>
+    <script>
+        var app = new Vue({
+            //el: element 应用的根目录
+            el: '#app', //渲染的模板在哪里
+            //data属性：vue应用的数据
+            data: {
+                x: 300,
+                y: 300,
+                inputTxt: '',
+                arrow: 37, //方块移动的方向
+                running: false, //是否开始移动
+            },
+            created() {
+                setInterval(() => {
+                    if(!this.running)
+                        return;
+                    switch (this.arrow) {
+                        case 37://左
+                            this.x -= 10;
+                            break;
+                        case 38: //上
+                            this.y -= 10;
+                            break;
+                        case 39: //右
+                            this.x += 10;
+                            break;
+                        default: //下
+                            this.y += 10;
+                            break;
+                    }
+                }, 50);
+            },
+            methods: {
+                onLeft(e) {
+                    this.inputTxt = e.key;
+                    this.arrow = e.keyCode;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

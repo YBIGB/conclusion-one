@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2 v-once>{{msg}}</h2>
+        <h2 v-text='msg'></h2>
+		
+		<p>
+			<!-- <h2>插值{{msg2}}</h2>
+			<h2 v-text="msg2">v-text指令</h2> -->
+			<h2 v-html="msg2">v-text插值</h2>
+		</p>
+    </div>
+</body>
+<script>
+	var app = new Vue({
+		el:'#app',
+		data:{
+			msg:'HELLO WORLD',
+            msg2:`<i>hello v-htlm</i>`
+		}
+    })
+</script>
+</html>

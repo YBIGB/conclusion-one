@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>监听姓改变样式</h2>
+        姓：<input type="text" v-model="lastName">
+        名：<input type="text" v-model="firstName">
+        <br>
+        表达式<div>{{lastName+firstName}}</div>
+        函数<div :style='{color:fontColor}'>{{fullnameFn()}}</div>
+        计算属性<div :style='{color:fontColor}'>{{fullname}}</div>
+
+
+        <div>
+            
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                firstName:'',
+                lastName:'',
+                fontColor:'black'
+            },
+            methods:{
+                fullnameFn(){
+                    if(this.lastName =='张')
+                    this.fontColor = 'red'
+                    else
+                    this.fontColor = 'black'
+                    return this.lastName+this.firstName
+                }
+            },
+            computed:{
+                fullname(){
+                    if(this.lastName =='张')
+                    this.fontColor = 'red'
+                    else
+                    this.fontColor = 'black'
+                    return this.lastName+this.firstName
+                }
+            },
+            watch:{
+                lastName:function(val,oldVal){
+                    console.log(val,oldVal)
+                }
+            },
+            beforeCreate(){
+                console.log('创建之前',this.fontColor)
+            },
+            created(){
+                console.log('创建之后',this.fontColor)
+            },
+             beforeMount(){
+                console.log('渲染之前',this.fontColor)
+            },
+            mounted(){
+                console.log('渲染之后',this.fontColor)
+            }
+        })
+        
+    </script>
+</body>
+</html>

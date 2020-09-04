@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <select  v-model='selectItem' @change="selectChange" >
+            <option  v-for='item in items'>{{item}}</option>
+        </select>
+        <img :src="url" alt="">
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                items:['Aphelios','Ashe','Varus'],
+                selectItem:'',
+                url:''
+            },
+            methods:{
+                selectChange(){
+                    this.url = './img/'+this.selectItem+'.png'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span v-bind:title="showLable">绑定以后显示showlable对应的data数据</span>
+		<span :title="showLable">绑定以后显示showlable对应的data数据</span>
+		<br>
+		<span title="showLable">没有绑定直接显示showlable</span>
+		<br>
+		<img :src="url" v-show="flag"> 
+		<input type="text" name="" id="" :disabled='!flag'>
+		<button @click='changeFrom'>{{btnVal}}</button>
+		<button @click='changeSct'>切换下拉</button>
+		<select name="" id="" >
+			<option value="" :selected='index==1'>男</option>
+			<option value="" :selected='index==2'>女</option>
+			<option value="" :selected='index==3'>保密</option>
+		</select>
+	
+		<h1>{{god.split('').reverse().join('')}}</h1>
+
+
+		<h1  v-show='show'>123123</h1>
+		<h1  v-if='show'>123123</h1>
+		<h1  v-else>asdaasd</h1>
+
+		
+		<span v-if='sex==0'>男</span>
+		<span v-else-if='sex==1'>女</span>
+		<span v-else>机器人</span>
+		<br><br><br>
+		<div>
+			<input type="number" v-model='grade'>
+			<div>成绩</div>
+				<span v-if='grade>90'>优</span>
+				<span v-else-if='grade>75'>良</span>
+				<span v-else-if='grade>60'>及格</span>
+				<span v-else>差</span>
+		</div>
+	</div>
+	
+
+	<!-- on简写作@ 
+	bind简写作: 表示数值由data取出
+	v-show控制display -->
+
+</body>
+<script>
+	var app = new Vue({
+		el:'#app',
+		data:{
+			showLable:'鼠标移入显示的内容',
+			url:'img/Ashe.png',
+			flag:true,
+			btnVal:'隐藏图片并且禁用输入框',
+			index:1,
+			god:'god is dog',
+			show:false,
+			sex:-1,
+			grade:100
+		},
+		methods:{
+			changeFrom(){
+				this.flag =!this.flag
+				 this.flag? this.btnVal ='隐藏图片并且禁用输入框':this.btnVal ='显示图片并恢复输入框'
+			},
+			changeSct(){
+				this.index++
+				if(this.index>3)
+				this.index=1
+			}
+		}
+    })
+</script>
+</html>

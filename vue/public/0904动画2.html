@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+    <style>
+        #app{
+            height: 300px;
+            background-color: antiquewhite;
+        }
+        .box{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            position: absolute;
+            top: 100px;
+            left: 50%;
+        }
+        .v-enter{
+            left: 10%;
+            opacity: 0;
+        }
+        .v-enter-active{
+            transition: all 1s;
+        }
+        .v-enter-to{
+            left: 50%;
+            opacity: 1;
+        }
+        
+        .v-leave{
+            left: 50%;
+        }
+        .v-leave-active{
+            transition: all 1s;
+        }
+        .v-leave-to{
+            left: 90%;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app" @click="show=!show">
+        <transition>
+            <div class="box" v-if="show">
+
+            </div>
+        </transition>  
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+               show:true
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/public/">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+</head>
+<body>
+    <div id="app" @click='foo=Math.random()' @click.middle='msg="++"'>
+        <h2>函数、表达式、计算属性的区别{{foo}}</h2>
+        <h2>表达式</h2>
+        <p>{{msg+Math.random()}}</p>
+        <p>{{msg+Math.random()}}</p>
+        <h2>函数</h2>
+        <p>{{randomMsg()}}</p>
+        <p>{{randomMsg()}}</p>
+        <h2>计算属性</h2>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+        <p>{{rdmMsg}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            //el: element 应用的根目录
+            el:'#app', //渲染的模板在哪里
+            //data属性：vue应用的数据
+            data:{
+                msg:'__',
+                foo:Math.random()
+            },
+            methods: {
+                randomMsg(){
+                    console.log('调用了函数');
+                    return this.msg+Math.random();
+                }
+            },
+            computed: {
+                rdmMsg:function(){
+                    console.log('调用了计算属性');
+                    return this.msg+Math.random();
+                }
+            },
+        })
+    </script>
+</body>
+</html>

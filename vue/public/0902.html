@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/public/">
+        <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- table>tr>th*3^tr>td*3 -->
+        <table border="1">
+            <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>角色</th>
+            </tr>
+            <tr v-for="u in users" :key='u.id'>
+                <td>{{u.id}}</td>
+                <td v-text='u.name'></td>
+                <td v-html='u.role'></td>
+            </tr>
+        </table>
+        <table border="1">
+            <tr>
+                <th>序号</th>
+                <th>编号</th>
+                <th>名称</th>
+                <th>角色</th>
+            </tr>
+            <tr v-for="(u,index) in users" :key='u.id'>
+                <td>{{index+1}}</td>
+                <td>{{u.id}}</td>
+                <td v-text='u.name'></td>
+                <td>
+                    <span v-if='u.role==-1' style="color:red">管理员</span>
+                    <span v-else-if='u.role==1'>用户</span>
+                    <span v-else style="color:green">作者</span>
+                </td>
+            </tr>
+        </table>
+        <div>循环<button @click='users.reverse()'>反转</button></div>
+		<br>
+		<br>
+		<br>
+		<h1>监听事件</h1>
+		<button type="button" @click="num+=1">加1</button>
+		<button type="button" @click="num+=2">加2</button>
+		<h2>被点击了{{num}}次</h2>
+		
+		<h2>事件的内联方式</h2>
+		<button type="button" @click="say('hi')">say hi</button>
+		<button type="button" @click="say('hello')">say hello</button>
+		<button type="button" @click="say('100')">say e</button>
+		
+		<h2>时间修饰符</h2>
+		<p @click="change">123</p>
+		<a href="0901.html" @click.prevent="change">123</a>
+		<p @click.once="change">123</p>
+		<a href="0901.html" @click.once.prevent="change">123</a>
+		
+		<textarea @keypress="key" rows="" cols="" readonly="" v-model="content"></textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            //el: element 应用的根目录
+            el:'#app', //渲染的模板在哪里
+            //data属性：vue应用的数据
+            data:{
+                users: [
+                    {id:"1001",name:'张三',role:'-1'},
+                    {id:"1002",name:'李四',role:'1'},
+                    {id:"1003",name:'王二',role:'2'},
+                ],
+				num:0,
+				content:''
+            },
+            methods: {
+				say(e){
+					if(isNaN(e)){
+						alert(e)
+					}else{
+						for(var i = 0 ; i < e ; i++){
+							console.log(i)
+						}
+					}
+				},
+				color(){
+					return`rgb(${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)},${Math.ceil(Math.random()*255)})`
+				},
+				change(event){
+					event.target.style.color =  this.color()
+				},
+				key(e){
+			
+					var inputTxt=[]
+					if(e.shiftKey){
+						inputTxt.push('shift')
+					}
+					if(e.ctrlKey){
+						inputTxt.push('ctrl')
+					}
+					inputTxt.push(e.key)
+					console.log(inputTxt.join("+"))
+					this.content += inputTxt.join("+") +'\n'
+				}
+            },
+			
+        })
+    </script>
+</body>
+</html>

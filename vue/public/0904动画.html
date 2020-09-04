@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .box{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            transition:  all 1s;
+        }
+        .yellowBox{
+            height: 300px;
+            width: 300px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="isTrue=!isTrue">变</button>
+        <div :class='["box",{yellowBox:isTrue}]'></div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+               isTrue:false
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>
