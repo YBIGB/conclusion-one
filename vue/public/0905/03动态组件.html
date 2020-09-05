@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+        <style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		#app{
+			width: 80%;
+			margin: 20px auto;
+			height: 90vh;
+		}
+		#left{
+			width: 30%;
+			float:left;
+		}
+		#right{
+			width: 70%;
+			float: left;
+			border: 1px solid #eeee;
+			height: 100%;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="app" >
+            <div class="left">
+                <button>HOME</button>
+				<button>Posts</button>
+				<button>Archive</button>
+            </div>
+            <div id="right">
+				<component :is="componentName"></component>
+            </div>
+        </div>
+        
+		<script type="text/javascript">
+			Vue.component('HOME',{
+				
+			})
+			var app =new Vue({
+				el: "#app",
+			})
+		</script>
+	</body>
+</html>

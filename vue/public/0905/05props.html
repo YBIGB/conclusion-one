@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+		<title>Document</title>
+		<style>
+
+
+		</style>
+	</head>
+
+	<body>
+
+		<div id="app">
+			<form-component :id="101" sex="男" username="薛定谔" :intro="{'message':'hello'}"></form-component>
+			<!-- 加了冒号以后 id可以传变量和表 达 式  此时101作为的是表达式  不带冒号传的一直都是字符串-->
+			<!-- intro 不写默认传hi   -->
+		</div>
+
+
+		<script>
+			Vue.component('form-component', {
+				template: `<ul>
+				<li>id={{id}} id is number?{{typeof id==='number'}}</li>
+				<li>sex={{sex}}</li>
+				<li>username={{username}}</li>
+				<li>intro:{{intro.message}}</li>
+				</ul>`,
+				props: {
+					id: Number,
+					sex: [Number, String],
+					username: {
+						type: String,
+						required: true
+					},
+					intro: {
+						type: Object,
+						default: function() {
+							return {
+								message: 'hi'
+							}
+						}
+					}
+				}
+			}, )
+			var app = new Vue({
+				el: '#app',
+			})
+		</script>
+	</body>
+
+</html>
