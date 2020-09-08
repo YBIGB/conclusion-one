@@ -1,0 +1,1 @@
+import {firstName,lastName} from "m1.mjs";
