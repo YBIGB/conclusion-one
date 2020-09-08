@@ -21,6 +21,12 @@
 
     <button @click="clickhandle">退出登录</button>
     <Popconfig :ifShow="show" msg="确定要退出吗？" :style="{left:l+'px'}"></Popconfig> 
+    <br /><br /><br />
+
+    <todoList></todoList>
+    <br /><br /><br />
+
+    <tab></tab>
   </div>
 </template>
 
@@ -30,6 +36,8 @@ import amount from "./components/amount.vue";
 import search from "./components/search.vue";
 import stars from "./components/stars.vue";
 import Popconfig from "./components/Popconfig.vue";
+import todoList from "./components/todo/todolist.vue";
+import tab from "./components/tab.vue";
 
 export default {
   name: "App",
@@ -39,6 +47,8 @@ export default {
     search,
     stars,
     Popconfig,
+    todoList,
+    tab
   },
   data() {
     return {
